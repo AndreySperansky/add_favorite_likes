@@ -1,0 +1,27 @@
+{#{% load filter_tags %}#}
+
+<table >
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Favorite</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for data in articls %}
+{#    {% csrf_token %}#}
+    <tr>
+      <td>{{ data.title }}</td>
+      <!-- Favorite Article -->
+      <td>
+        <a href="{% url 'ajax:bookmark' data.id %}" data-id="{{ data.id }}" data-type="article" data-action="bookmark" title="Избранное">
+          <button type="button" class="btn btn-outline-info"><i class="bi bi-heart-fill"></i>Info</button>
+
+{#          <span data-icon="favorite" class="mdi mdi-star mr-1 {% if obj.bookmarks.all|user_in:user %}text-success{% endif %}"></span>#}
+        </a>
+        <span data-count="bookmark">{{ data.get_bookmark_count }}</span>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

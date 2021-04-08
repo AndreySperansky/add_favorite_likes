@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite function</title>
+
+{#  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+<h1>Favorite Function</h1>
+
+
+  <table class="project-container">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Artist</th>
+      <th>Favorite</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in table_list %}{% csrf_token %}
+      <tr>
+
+
+        <td>{{ data.project_name }}</td>
+        <td>{{ data.artist }}</td>
+        <!-- Favorite Album -->
+        <td><a href="{% url 'mainapp:favorite_project' data.id %}" class="btn btn-default btn-sm btn-favorite" role="button"><span
+                class=" glyphicon glyphicon-star {% if data.is_favorite %}active{% endif %}" action=""></span></a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+<a href="{% url 'ajax:index' %}"><h1>Ajax Function</h1></a>
+
+
+
+<script>
+  var ProjectListPage = {
+    init: function () {
+        this.$container = $('.project-container');
+        this.render();
+        this.bindEvents();
+    },
+
+    render: function () {
+
+    },
+
+    bindEvents: function () {
+      $('.btn-favorite', this.$container).on('click', function (e) {
+        console.log('Hola');
+        e.preventDefault();
+
+
+        var self = $(this);
+        var url = $(this).attr('href');
+        $.getJSON(url, function (result) {
+            if (result.success) {
+                $('.glyphicon-star', self).toggleClass('active');
+            }
+        });
+
+        return false;
+      });
+    }
+  };
+
+
+  $(document).ready(function () {
+      ProjectListPage.init();
+  });
+
+
+
+</script>
+
+<!-- Bootstrap core JavaScript -->
+{#  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
+{#  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>#}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</body>
+
+
+
