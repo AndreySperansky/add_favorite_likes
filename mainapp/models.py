@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class ProjectProfile(models.Model):
-    project_name = models.CharField(max_length=100)
-    artist = models.CharField(max_length=100)
+    project_name = models.CharField(max_length=100, verbose_name='Альбом')
+    artist = models.CharField(max_length=100, verbose_name='Исполнитель')
     is_favorite = models.BooleanField(default=False)
 
 
@@ -11,8 +11,8 @@ class ProjectProfile(models.Model):
         return self.project_name
 
     class Meta:
-        verbose_name = 'Профиль Проекта'
-        verbose_name_plural = 'Профили Проекта'
+        verbose_name = 'Альбом'
+        verbose_name_plural = 'Альбомы'
 
 
 

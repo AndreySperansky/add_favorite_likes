@@ -11,7 +11,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls', namespace='main')),
-    path('ajax/', include('ajax.urls', namespace='ajax'))
+    path('ajax/', include('ajax.urls', namespace='ajax')),
+    path('cv/', include('cv_app.urls', namespace='cv')),
 ]
 
 

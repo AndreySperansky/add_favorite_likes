@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
     'ajax.apps.AjaxConfig',
+    'cv_app.apps.CvAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,4 +119,5 @@ STATICFILES_DIRS =(
     os.path.join(BASE_DIR, 'mainapp/static'),
     os.path.join(BASE_DIR, 'add_favorite/static'),
     os.path.join(BASE_DIR, 'ajax/static'),
+    os.path.join(BASE_DIR, 'cv_app/static'),
 )
