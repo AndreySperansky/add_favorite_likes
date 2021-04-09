@@ -19,40 +19,12 @@
 <body>
 <h1>Favorite Function</h1>
 
+<div class="favorite_list">
+  {% include 'mainapp/includes/inc_favorits.html' %}
+</div>
 
-<table class="project-container">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Artist</th>
-    <th>Favorite</th>
-  </tr>
-  </thead>
-  <tbody>
-  {% for data in table_list %}{% csrf_token %}
-    <tr>
-      <td>{{ data.project_name }}</td>
-      <td>{{ data.artist }}</td>
-      <!-- Favorite Album -->
-      <td>
-        {% if data.is_favorite %}
-        <a href="{% url 'mainapp:favorite_project' data.id %}" data-id="{{ article.id }}" data-type="article"
-           data-action="bookmark" title="">
-          <button type="button" class="btn btn-sm btn-info"><i class="bi bi-heart-fill"></i></button>
-        </a>
-        {% else %}
-        <a href="{% url 'mainapp:favorite_project' data.id %}" data-id="{{ article.id }}" data-type="article"
-           data-action="bookmark" title="">
-          <button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-heart-fill"></i></button>
-        </a>
-        {% endif %}
-      </td>
-    </tr>
-  {% endfor %}
-
-
-  </tbody>
-</table>
+<br>
+<hr>
 
 
 <a href="{% url 'ajax:index' %}"><h5>Ajax Function</h5></a>

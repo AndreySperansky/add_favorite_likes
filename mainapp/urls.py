@@ -5,5 +5,5 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', index_view, name='index'),
-    path('<int:projectprofile_id>/favorite_album/', favorite_project, name='favorite_project'),
+    path('<int:albom_id>/favorite_album/', favorite_project, name='favorite_project'),
 ]

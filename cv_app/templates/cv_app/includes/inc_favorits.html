@@ -3,21 +3,27 @@
 <table >
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Resume</th>
       <th>Favorite</th>
     </tr>
   </thead>
   <tbody>
-  {% for article in articles %}
+  {% for cv in articles %}
     {% csrf_token %}
     <tr>
-      <td>{{ article.title }}</td>
-      <!-- Favorite Article -->
-      <td>
-        <a href="{% url 'ajax:bookmark' article.id %}" data-id="{{ article.id }}" data-type="article" data-action="bookmark" title="Закладки">
-          <button type="button" class="btn btn-outline-info"><i class="bi bi-heart-fill"></i></button>
+      <td>{{ cv.cv }}</td>
+
+      <!-- Favorite CV -->
+{#      <td>#}
+{#        <a href="{% url 'ajax:bookmark' cv.id %}" data-id="{{ cv.id }}" data-type="article" data-action="bookmark" title="Закладки">#}
+{#          <button type="button" class="btn btn-outline-info"><i class="bi bi-heart-fill"></i></button>#}
+{#        </a>#}
+{#        <span data-count="bookmark">{{ cv.get_bookmark_count }}</span>#}
+{#      </td>#}
+      <td >
+        <a href="{% url 'cv_app:bookmark' cv.id %}" id="bookmark" class="add-remove-bookmark">
+          Add Bookmark
         </a>
-        <span data-count="bookmark">{{ article.get_bookmark_count }}</span>
       </td>
     </tr>
   {% endfor %}
