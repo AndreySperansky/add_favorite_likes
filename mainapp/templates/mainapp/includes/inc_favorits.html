@@ -16,12 +16,12 @@
       <!-- Favorite Album -->
       <td>
         {% if data.is_favorite %}
-        <a href="{% url 'mainapp:favorite_project' data.id %}" data-id="{{ article.id }}" data-type="article"
+        <a href="{% url 'mainapp:favorite' data.id %}" data-id="{{ article.id }}" data-type="article"
            data-action="bookmark" title="">
           <button type="button" class="btn btn-sm btn-info"><i class="bi bi-heart-fill"></i></button>
         </a>
         {% else %}
-        <a href="{% url 'mainapp:favorite_project' data.id %}" data-id="{{ article.id }}" data-type="article"
+        <a href="{% url 'mainapp:favorite' data.id %}" data-id="{{ article.id }}" data-type="article"
            data-action="bookmark" title="">
           <button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-heart-fill"></i></button>
         </a>

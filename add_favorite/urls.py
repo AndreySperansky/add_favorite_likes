@@ -13,6 +13,8 @@ urlpatterns = [
     path('', include('mainapp.urls', namespace='main')),
     path('ajax/', include('ajax.urls', namespace='ajax')),
     path('cv/', include('cv_app.urls', namespace='cv')),
+    path('job/', include('job_app.urls', namespace='job')),
+    path('like/', include('like_app.urls', namespace='like')),
 ]
 
 

@@ -12,7 +12,7 @@
     {% csrf_token %}
     <tr>
       <td>{{ article.title }}</td>
-      <!-- Favorite Article -->
+{#      <!-- Favorite Article -->#}
       <td>
         <a href="{% url 'ajax:bookmark' article.id %}" data-id="{{ article.id }}" data-type="article" data-action="bookmark" title="Закладки">
           <button type="button" class="btn btn-outline-info"><i class="bi bi-heart-fill"></i></button>

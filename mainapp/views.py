@@ -15,7 +15,7 @@ def index_view(request):
 
 
 
-# синхронный вариант
+# асинхронный вариант
 def favorite_project(request, albom_id):
     projectprofile = get_object_or_404(ProjectProfile, pk=albom_id)
     # try:

@@ -1,0 +1,32 @@
+{#{% load filter_tags %}#}
+
+<table >
+  <thead>
+    <tr>
+      <th>Vacancy</th>
+      <th>Favorite</th>
+    </tr>
+  </thead>
+  <tbody class="bookmark_list">
+  {% for job in vacancies %}
+    {% csrf_token %}
+    <tr>
+      <td>{{ job.vacancy }}</td>
+
+      <!-- Favorite JOB -->
+      <td>
+        {% if user not in job.liked.all %}
+        <a href="{% url 'job_app:bookmark' job.id %}" id="bookmark">
+          <button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-heart-fill"></i></button>
+        </a>
+        {% else %}
+        <a href="{% url 'job_app:bookmark' job.id %}" data-id="{{ job.id }}">
+          <button type="button" class="btn btn-sm btn-info"><i class="bi bi-heart-fill"></i></button>
+        </a>
+          <span data-count="bookmark">{{ job.liked.all.count }}</span>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

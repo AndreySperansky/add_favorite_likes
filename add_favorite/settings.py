@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'ajax.apps.AjaxConfig',
     'cv_app.apps.CvAppConfig',
+    'job_app.apps.JobAppConfig',
+    'like_app.apps.LikeAppConfig',
 ]
 
 MIDDLEWARE = [

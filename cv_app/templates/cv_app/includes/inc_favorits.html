@@ -8,22 +8,24 @@
     </tr>
   </thead>
   <tbody>
-  {% for cv in articles %}
+  {% for cv in resumes %}
     {% csrf_token %}
     <tr>
       <td>{{ cv.cv }}</td>
 
       <!-- Favorite CV -->
-{#      <td>#}
-{#        <a href="{% url 'ajax:bookmark' cv.id %}" data-id="{{ cv.id }}" data-type="article" data-action="bookmark" title="Закладки">#}
-{#          <button type="button" class="btn btn-outline-info"><i class="bi bi-heart-fill"></i></button>#}
-{#        </a>#}
-{#        <span data-count="bookmark">{{ cv.get_bookmark_count }}</span>#}
-{#      </td>#}
+
       <td >
-        <a href="{% url 'cv_app:bookmark' cv.id %}" id="bookmark" class="add-remove-bookmark">
-          Add Bookmark
-        </a>
+        {% if user not in cv.liked.all %}
+          <a href="{% url 'cv_app:bookmark' cv.id %}" id="bookmark" class="add-remove-bookmark">
+            Add Bookmark
+          </a>
+        {% else %}
+          <a href="{% url 'cv_app:bookmark' cv.id %}" id="bookmark" class="add-remove-bookmark">
+            Remove Bookmark
+          </a>
+          <span data-count="bookmark">{{ cv.liked.all.count }}</span>
+        {% endif %}
       </td>
     </tr>
   {% endfor %}

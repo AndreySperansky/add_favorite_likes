@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class CV(models.Model):
     cv = models.CharField(max_length=200, verbose_name='Заголовок')
-    employers = models.ManyToManyField(User, through='BookmarkCV', verbose_name='Работодатели')
+    liked = models.ManyToManyField(User, through='BookmarkCV', verbose_name='В избранное')
 
     def __str__(self):
         return f'{self.cv}'
@@ -29,9 +29,6 @@ class BookmarkCV(models.Model):
 
     def __str__(self):
         return f'{self.user.username}:{self.obj.cv}'
-
-    # def get_bookmark_count(self):
-    #     return self.likes.all().count()
 
 
     class Meta:

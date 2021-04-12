@@ -10,10 +10,10 @@ from .models import CV, BookmarkCV
 
 def index_view(request):
 
-    articles = CV.objects.all()
+    resumes = CV.objects.all()
 
     context = {
-        "articles": articles
+        "resumes": resumes
     }
 
     return render(request, 'cv_app/index.html', context)
