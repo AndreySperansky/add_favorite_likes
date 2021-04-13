@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     body = models.TextField()
-    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked', verbose_name='Избранное (опция)')
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author', verbose_name='Автор  ')
 
 
 
@@ -31,9 +31,9 @@ LIKE_CHOICES = (
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
-    value = models.CharField(choices=LIKE_CHOICES, default='like', max_length=10)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10, verbose_name='Лайк')
     # is_favorite = models.BooleanField(default=False)
 
 
