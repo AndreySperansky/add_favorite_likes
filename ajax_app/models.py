@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Post(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=200, verbose_name='Заголовок')
     body = models.TextField()
-    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked', verbose_name='Избранное (опция)')
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='like', verbose_name='Избранное (опция)')
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author', verbose_name='Автор  ')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='writer', verbose_name='Автор  ')
 
 
 
@@ -31,8 +31,8 @@ LIKE_CHOICES = (
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower', verbose_name='Читатель')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reader', verbose_name='Пользователь')
+    post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='likes')
     value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10, verbose_name='Лайк')
     # is_favorite = models.BooleanField(default=False)
 
@@ -40,7 +40,6 @@ class Like(models.Model):
 
     def __str__(self):
         return f'{self.user.username}:{self.post.title}'
-
 
     class Meta:
         verbose_name = 'Лайк'

@@ -3,21 +3,21 @@ from .models import *
 
 class ArticleAdmin(admin.ModelAdmin):
     # какие поля будут отображаться в админке
-    list_display = ('id', 'title')
+    list_display = ('id', 'title', 'author')
     # какие поля будут ссылками на соответствующие модели
-    list_display_links = ('id', )
+    list_display_links = ('id', 'author')
     # какие поля будут участвовать в поиске
-    search_fields = ('title',)
+    search_fields = ('title', 'author')
 
 
-class BookmarkArticleAdmin(admin.ModelAdmin):
+class LikeAdmin(admin.ModelAdmin):
     # какие поля будут отображаться в админке
-    list_display = ('id', 'user', 'obj',)
+    list_display = ('id', 'user', 'post', 'value')
     # какие поля будут ссылками на соответствующие модели
-    list_display_links = ('id','user', 'obj', )
+    list_display_links = ('id','user', 'post', 'value')
     # какие поля будут участвовать в поиске
-    search_fields = ('user', 'obj')
+    search_fields = ('user', 'post', 'value')
 
 
 admin.site.register(Article, ArticleAdmin,)
-admin.site.register(BookmarkArticle, BookmarkArticleAdmin)
+admin.site.register(Like, LikeAdmin)

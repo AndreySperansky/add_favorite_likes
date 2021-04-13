@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
-    'ajax.apps.AjaxConfig',
+    'ajax_app.apps.AjaxAppConfig',
     'cv_app.apps.CvAppConfig',
     'job_app.apps.JobAppConfig',
     'like_app.apps.LikeAppConfig',
