@@ -37,6 +37,8 @@
 <h1>Like Function</h1>
 <i class="bi bi-heart-fill" style="font-size: 2rem; color: crimson;"></i>
 
+<hr>
+
 
 <div class="add-remove-bookmark">
   {% include 'like_app/includes/inc_favorits.html' %}
@@ -44,9 +46,10 @@
 
 <hr>
 
-<a href="{% url 'ajax:index' %}"><h5>Ajax Function</h5></a>
+<a href="{% url 'ajax_app:index' %}"><h5>Ajax Function</h5></a>
 <a href="{% url 'mainapp:index' %}"><h5>AddFavorite Function</h5></a>
 <a href="{% url 'cv_app:index' %}"><h5>CV Function</h5></a>
+<a href="{% url 'job_app:index' %}"><h5>Job Function</h5></a>
 <!-- Footer -->
 
 <!-- /.footer -->

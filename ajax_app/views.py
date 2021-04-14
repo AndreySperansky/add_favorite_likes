@@ -44,8 +44,19 @@ def add_remove_like(request):
 
         like.save()
 
-    # return HttpResponseRedirect(reverse('like_app:index'))
-    return redirect('like_app:index')
+############################### Ajax #################################################
+
+        data = {
+            'value': like.value,
+            'likes': post_obj.liked.all().count()
+        }
+
+        return JsonResponse(data, safe=False)
+
+############################### End Ajax ###############################################
+
+    return HttpResponseRedirect(reverse('like_app:index'))
+    # return redirect('ajax_app:index')
 
 
 

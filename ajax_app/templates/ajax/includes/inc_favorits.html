@@ -5,20 +5,23 @@
   {% for post in posts %}
     <h5 style="color: darkred">{{ post.title }}</h5>
     <p>{{ post.body }}</p>
-    <form action="{% url 'like:like-post' %}" method="POST">
+    <form action="{% url 'ajax_app:like-post' %}" method="POST" class="like-form" id="{{ post.id }}">
       {% csrf_token %}
       <input type="hidden" name="post_id" value="{{ post.id }}">
-      {% if user not in post.liked.all %}
-{#        <a href="{% url 'like_app:like-post' post.id %}" id="like-positive">#}
-{#        </a>#}
-        <button type="submit" class="btn btn-sm btn-outline-info"><i class="bi bi-heart-fill"></i></button>
-      {% else %}
-{#        <a href="{% url 'like_app:like-post' post.id %}" id="like-negative">#}
-{#        </a>#}
-        <button type="submit" class="btn btn-sm btn-info"><i class="bi bi-heart-fill"></i></button>
-      {% endif %}
+
+        <button type="submit" class="btn btn-sm btn-outline-info like-btn{{ post.id }}">
+          {% if user not in post.liked.all %}
+            Like
+          {% else %}
+            Unlike
+          {% endif %}
+        </button>
+        <div class="like-count{{ post.id }}">{{ post.liked.all.count }}</div>
+{#      {% else %}#}
+{#        <button type="submit" class="btn btn-sm btn-info"><i class="bi bi-heart-fill"></i></button>#}
+{#        <span>{{ post.liked.all.count }} likes</span>#}
+{#      {% endif %}#}
     </form>
-    <strong>{{ post.liked.all.count }} likes</strong>
     <hr>
   {% endfor %}
 </div>
