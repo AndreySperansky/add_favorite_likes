@@ -1,0 +1,33 @@
+{% comment %}
+  Вариант решения добавления лайков с изменем цвета кнопки
+{% endcomment %}
+
+
+{#{% load filter_tags %}#}
+
+
+<div class="like_list">
+  {% for post in posts %}
+    <h5 style="color: darkred">{{ post.title }}</h5>
+    <p>{{ post.body }}</p>
+    <form action="{% url 'ajax_app:like-post' %}" method="POST" class="like-form"  id="{{ post.id }}">
+      {% csrf_token %}
+      <input type="hidden" name="post_id" value="{{ post.id }}">
+
+
+
+      <button type="submit" class="btn btn-sm btn-outline-info like-btn{{ post.id }}">
+        <i class="bi bi-heart-fill"></i>
+        {% if user not in post.liked.all %}
+          <span hidden>Like</span>
+        {% else %}
+          <span hidden>Unlike</span>
+        {% endif %}
+      </button>
+
+      <div class="like-count{{ post.id }}">{{ post.liked.all.count }}</div>
+    </form>
+    <hr>
+  {% endfor %}
+</div>
+

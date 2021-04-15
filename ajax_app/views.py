@@ -55,7 +55,7 @@ def add_remove_like(request):
 
 ############################### End Ajax ###############################################
 
-    return HttpResponseRedirect(reverse('like_app:index'))
+    # return HttpResponseRedirect(reverse('like_app:index'))
     # return redirect('ajax_app:index')
 
 
